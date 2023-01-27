@@ -1,0 +1,23 @@
+TPS 1:
+1.) Julien Crespo (me)
+2.)
+httpsubuntu.comtutorialscommand-line-for-beginners#1-overview
+httpswww.guru99.comlinux-commands-cheat-sheet.html
+httpsss64.combash
+
+TPS 2:
+1.) I installed a linux subsystem on windows. Thus, all I need to do to open up a linux terminal is SHIFT+RIGHTCLICK and then click "open linux shell in this folder".
+2.) Use the "ls" command in the selected folder.
+3.) Since I'm using a linux subsystem, It's "cd /mnt/c/Users/gamep/Desktop"
+4.) "mkdir CSE31"
+
+TPS 3:
+1.) https://www.edureka.co/blog/how-to-compile-c-program-in-command-prompt/   https://medium.com/@laura.derohan/compiling-c-files-with-gcc-step-by-step-8e78318052
+3.) "gcc main.c -o main.exe"
+4.) a.out will be created, and you can run it with ./a.out
+5.) -c Compiles but does not link.
+6.) -g will generate and embed debug info.
+7.) Replace main.exe with cselab1.exe in the gcc compile command.
+8.) It will just create a.out. It works.
+9.) "./main.exe"
+
