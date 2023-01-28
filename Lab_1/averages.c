@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 int main( int argc, char *argv[] )  {
-    char intstring[] = ""
-    int input_index=1, inpt, inputsum, avg_odd, avg_even;
+
+    int input_index=1;
+    float inpt, inputsum;
 
     printf("Enter the 1st number: ");
-    scanf("%d", &inpt);
+    scanf("%f", &inpt);
     fflush(stdout);
     if (inpt != 0) {
         inputsum += inpt;
@@ -17,18 +18,26 @@ int main( int argc, char *argv[] )  {
             printf("Enter the 2nd number: ");
         } else if (input_index == 3) {
             printf("Enter the 3rd number: ");
+        } else {
+            printf("Enter the %ith number: ", input_index);
         }
-        printf("Enter the " + (string));
-        scanf("%d", &a);
+        scanf("%f", &inpt);
         fflush(stdout);
         if (inpt != 0) {
             inputsum += inpt;
             input_index += 1;
         };
     };
-    
-    for (int i=0; i<a; i++) {
-        
-    };
+    input_index -= 1;
+    if (inputsum == 0) {
+        printf("There is no average to compute.\n");
+    } else {
+        float result = (inputsum / (float) input_index);
+        if ((int)inputsum % 2 == 0) { //is even
+            printf("Average of inputs whose digits sum up to an even number: %i\n", (int)result);
+        } else { // is odd
+            printf("Average of inputs whose digits sum up to an odd number: %f\n", (float)result);
+        }
+    }
     return 0; 
 } 
