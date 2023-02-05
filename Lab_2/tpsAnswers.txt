@@ -1,0 +1,4 @@
+1.) Me (Julien Crespo)
+2.) https://www.cs.cmu.edu/~gilpin/tutorial/ https://www.tutorialspoint.com/gnu_debugger/index.htm https://cs.baylor.edu/~donahoo/tools/gdb/tutorial.html
+
+https://www.cse.unsw.edu.au/~learn/debugging/modules/gdb_setup/
