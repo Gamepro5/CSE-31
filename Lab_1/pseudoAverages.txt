@@ -1,1 +1,16 @@
-s
+keep track of an input index. used for iterating.
+
+declare a float for the input, odd input sum, even input sum, odd input count, and even input count.
+
+print enter first number
+
+scanf into the input variable
+if the input variable isn't empty, declare a temporary sum variable to zero
+declare a remaining input to the input value
+while remaining input isn't zero, set the remaining input to the remaining input - remaining input % 10, all divided by 10. this isolates each digit. you then add those digits to the tempsum.
+
+if the tempsum is even, add the input to the even input sum. do opposite if odd
+
+increment the count by 1
+
+print by divinging the input sum by the input count (takes the average)

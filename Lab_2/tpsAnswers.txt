@@ -1,4 +1,36 @@
+TPS 1:
+
 1.) Me (Julien Crespo)
 2.) https://www.cs.cmu.edu/~gilpin/tutorial/ https://www.tutorialspoint.com/gnu_debugger/index.htm https://cs.baylor.edu/~donahoo/tools/gdb/tutorial.html
 
 https://www.cse.unsw.edu.au/~learn/debugging/modules/gdb_setup/
+
+https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf
+
+TPS 2:
+
+1.) gcc -g punishment.c
+2.) gdb
+3.) type "run" while in the gdb program.
+4.) Breakpoints are a pause in the program at a specific line. This can be done by typing "break 43" where 43 is the line number.
+5.) type "c" or "continue" to move to the next breakpoint.
+6.) type "a function::varname" where fucntion is the name of the function the variable is in, and varname is the variable name. Just type the variable name if it's a global var. Use a format specifier like "a" for pointer, "c" for int, etc before the var name.
+7.) type "kill" to stop the program
+8.) type "exit" to leave gdb
+
+TPS 3:
+
+1.) 4 variables were declared. 2 ints and 2 pointers to ints.
+2.) they will be 0 or random garbage depending on the compiler used. It seems to be random garbage from running the program.
+3.) You can initialize them with the value of zero.
+4.) -380885824
+32767
+0x7fffe966a000
+0x10101000000
+5.) setting px = &p and then printing *px does indeed return p.
+6.) for (int i=0;i<10;i++) {
+        printf("%i\n",*(arr+i));
+    }
+    prints out random ints.s
+7.) Yes, printf("%i\n%i\n",*(arr+i), arr[i]); prints the same value for each.
+8.) Yeah, I mean it prints the adress of arr. It's the pointer of a pointer.
