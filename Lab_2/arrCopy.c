@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-
+#include <stdlib.h>
 int size; // Variable to record size of original array arr
 int evenCount = 0, oddCount = 0; // Variables to record sizes of new arrays arr_even and arr_odd
 int *arr; // Dynamically allocated original array with #elements = size
@@ -14,6 +14,15 @@ char *str3 = "Contents of new array containing odd elements from original: ";
 // adding/removing/modifying the function parameters, or changing its return 
 // type. 
 void printArr(int *a, int size, char *prompt){
+    printf(prompt);
+    for (int i=0;i<size;i++) {
+        //printf("%lu",sizeof(*a/sizeof(int)));
+        printf("%i ", *(a+i));
+    }
+    if (size == 0) {
+        printf("empty");
+    }
+    printf("\n");
 	// Your code here
 }
 
@@ -22,6 +31,17 @@ void printArr(int *a, int size, char *prompt){
 // type. 
 void arrCopy(){
 	// Your code here
+    int oddfilled,evenfilled = 0;
+    for (int i=0;i<size;i++) {
+        //printf("%i\n", *(arr+i));
+        if (*(arr+i) % 2 == 0) {
+            *(arr_even+evenfilled) = *(arr+i);
+            evenfilled++;
+        } else {
+            *(arr_odd+oddfilled) = *(arr+i);
+            oddfilled++;
+        }
+    }
 }
 
 int main(){
@@ -30,12 +50,31 @@ int main(){
     scanf("%d", &size);
 
     // Dynamically allocate memory for arr (of appropriate size)
+    arr = (int*) malloc(size*sizeof(int));
     // Your code here
 
     // Ask user to input content of arr and compute evenCount and oddCount
+    fflush(stdin);
+    for (int i=0;i<size;i++) {
+        printf("Enter array element #%i: ", i+1);
+        int inpt;
+        scanf("%d", &inpt);
+        fflush(stdin);
+        if (inpt % 2 == 0) {
+            evenCount++;
+        } else {
+            oddCount++;
+        }
+        
+        *(arr+i) = inpt;
+    }
+    printf("\n");
 	// Your code here
 
     // Dynamically allocate memory for arr_even and arr_odd (of appropriate size)
+    arr_even = (int*) malloc(evenCount*sizeof(int));
+    arr_odd = (int*) malloc(oddCount*sizeof(int));
+    
     // Your code here    
 	
 /*************** YOU MUST NOT MAKE CHANGES BEYOND THIS LINE! ***********/

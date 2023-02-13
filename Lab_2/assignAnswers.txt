@@ -1,0 +1,12 @@
+Part 1:
+
+1.) Line 22 causes the error
+2.) Change input to &input, since it expects a pointer.
+3.) The issue is that sum is never changed, only "values" is.
+4.) This can be fixed by simply passing a pointer to sum, so that it isn't copied and is instead dealing with the real variable.
+
+Part 2:
+
+1.) Nope, it says "The result of appending str2 to str1 is HELLO!hello!llo!.". That's not what I expected. It should be HELLO!hello!
+2.) The issue seems to be that the buffer isn't cleared properly. It still remembers my previous hello. I assumed that changing s1 in the function caused the issue so i just created a new static string variable and returned that.
+3.) If i had to guess it's because the string is too long.

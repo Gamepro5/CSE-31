@@ -13,11 +13,17 @@
 char* append(char s1[], char s2[]) {
     int s1len = strlen(s1);
     int s2len = strlen(s2);
+    static char returnstring[10] = "";
     int k;
-    for (k = 0; k < s2len; k++) {
-        s1[k + s1len] = s2[k];
+    for (k = 0; k < s1len; k++) {
+        returnstring[k] = s1[k];
+
     }
-    return s1;
+    for (k = 0; k < s2len; k++) {
+        returnstring[k + s1len] = s2[k];
+
+    }
+    return returnstring;
 }
 
 // DO NOT MODIFY unless when you run this, your code fails to grab input with spaces,
