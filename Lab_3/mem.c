@@ -15,6 +15,10 @@
 	*handle = ptr;
 
 	// Insert code here
+	printf("%p\n", &num);
+	printf("%p\n", ptr);
+	printf("%p\n", handle);
+
 
 	return 0;
 } 
