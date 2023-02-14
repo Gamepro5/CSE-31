@@ -1,0 +1,15 @@
+TPS 1:
+
+1.) Stack, Heap, Static.
+2.)	a.) 3
+	b.) 2 are pointers, one is a pointer of a pointer, and the other is a pointer to an int.
+	c.) The stack.
+	d.) The heap, it's the same as using the new operator from c++
+3.) num is in stack, ptr is in stack until line 12 when it is placed in heap, handle is also in the stack until like 14 when it gets placed in the heap. there are no static variables.
+4.) n/a
+
+TPS 2:
+
+1.) n/a
+2.) n/a
+3.) Head's location in memory is the same as the first item in the struct, in this case, iValue. The next node is (nil) because it's not defined.
