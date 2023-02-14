@@ -9,11 +9,13 @@ int has_cycle(node *head) {
 	// Your code goes here:
   node *firstptr = head;
   node *secondptr = head;
-  while ((*firstptr).next != NULL && ( (*secondptr).next != NULL && (*(*secondptr).next).next != NULL )) {
-    firstptr = (*firstptr).next;
-    secondptr = (*firstptr).next;
-    if (firstptr == secondptr || (*secondptr).next == firstptr) {
-      return 1;
+  if (firstptr != NULL) {
+     while ((*firstptr).next != NULL && ( (*secondptr).next != NULL && (*(*secondptr).next).next != NULL )) {
+      firstptr = (*firstptr).next;
+      secondptr = (*(*secondptr).next).next;
+      if (firstptr == secondptr || (*secondptr).next == firstptr) {
+        return 1;
+      }
     }
   }
   return 0;
