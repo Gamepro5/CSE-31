@@ -1,0 +1,24 @@
+TPS 1:
+
+1.) I truly don't know. I assumed it would take the decimal value of A and add that to the 2.
+2.) not sure what you mean by at the end of     the program, there was already a line printing it when i downloaded the file.
+3.) as I just said, this isn't possible, the code game with the line pre-included.
+4.) Yes. I am surprised. It prints 2. I don't understand where the A went.
+5.) a.) one.
+    b.) I suppose because modifying four_c changes four_ints
+    c.) Turns out they are not.
+6.) They are 2 aside from the first one. Each location in storage is 4 bits. I don't know what this could mean. ints are 4 bytes so everything is working fine, aside from the fact that the cast to a char didn't work because it's still 4 bytes.
+7.) oh, i think i understand. it's massive because 1 int = 4 chars, since an int is 4 bytes and 4 chars is 4 bytes. so all of the array got shoved in one char.
+8.) The output is epxected when i print four_c.
+9.) 
+10.) as i said, i think it's because four_c is 4 bytes and an int is 4 bytes. so filling all 4 places the character array is the same as filling the one int.
+
+TPS 2:
+
+1.) Line 8 creates an array of arrays. 5 arrays are contained in the array.
+2.) (*(*(arr+i))+j) = something
+3.) ok, i added it. check the file took a painful amount of time because the left side of an assignment operation needs to be a constant value.
+4.) We need to specify the size because it's not an object, we can't just fetch it at will.
+5.) done
+6.) done
+7.) done
