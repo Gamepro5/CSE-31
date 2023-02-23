@@ -198,7 +198,7 @@ void searchPuzzle(char** arr, char* word) {
                 }
 
 
-                // TODO: DISCUSS WHY MY METHOD CANNOT FIND THE WORD "MLZELOA" in word search one.
+                // TODO: DISCUSS WHY MY METHOD CANNOT FIND THE WORD "MLZELOA" in word search one. maybe i need to expand the recursion in a potentially exponential tree instead of linearly.
 
 
             }
