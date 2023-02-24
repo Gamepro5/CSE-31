@@ -9,6 +9,7 @@ void printPuzzle(char** arr);
 void searchPuzzle(char** arr, char* word);
 int bSize;
 int wordFound = 0;
+int showDebugInfo = 0; //toggle to and from 1 or 0 and recompile to print more info when running. It will print the puzzle each recursive step and some more info about the step. Had to use only print debugging because gdb doesn't work on my machine.
 
 // Main function, DO NOT MODIFY 	
 int main(int argc, char **argv) {
@@ -65,30 +66,33 @@ void printPuzzle(char** arr) {
     // It must produce the output in the SAME format as the samples 
     // in the instructions.
     // Your implementation here...
-    printf("%i%s%i%s\n\n", bSize, "x", bSize, " puzzle:");
+    printf("  Original %i%s%i%s\n", bSize, "x", bSize, " puzzle:");
 	for (int i=0;i<bSize;i++) {
+        printf("    ");
 		for (int j=0;j<bSize;j++) {
 			printf("%c%s", *( *(arr + i) + j), " ");
 		}
 		printf("\n");
 	}
-	printf("\n\n");
+	printf("\n");
 
 };
 
-void printMatrix(int** *arr) { // this doesn't need a pointer to the arr matrix, but it's good practice. it would only need it if it were editing, not just printing.
+void printMatrix(int** *arr, char** puzzle) { // this doesn't need a pointer to the arr matrix, but it's good practice. it would only need it if it were editing, not just printing.
 	// This function will print out the complete puzzle grid (arr). 
     // It must produce the output in the SAME format as the samples 
     // in the instructions.
     // Your implementation here...
-    printf("%i%s%i%s\n\n", bSize, "x", bSize, " puzzle:");
+    printPuzzle(puzzle);
+    printf("  %i%s%i%s\n", bSize, "x", bSize, " puzzle tracemap:");
 	for (int i=0;i<bSize;i++) {
+        printf("    ");
 		for (int j=0;j<bSize;j++) {
 			printf("%i%s", *( *(*arr + i) + j), " ");
 		}
 		printf("\n");
 	}
-	printf("\n\n");
+	printf("\n");
 
 };
 
@@ -142,25 +146,27 @@ int appendInts(int left, int right) {
 
 int findAdjacentWord(char** arr, char* word, int currentLetterIndex, struct coordinate _pivot, int** *returnMatrix) {
     struct coordinate pivot = _pivot;
-    // int currentLetterIndex;
-    // memcpy(&currentLetterIndex,&_currentLetterIndex,sizeof(int));
-    // free(returnMatrix);
-    // printf("currentLetterIndex: %i\n", currentLetterIndex);
-    // printf("strlen word: %li\n", strlen(word));
-    // printMatrix(returnMatrix);
+    if (showDebugInfo) {
+        printf("Step:\n");
+        printf("  currentLetterIndex: %i\n", currentLetterIndex);
+        printf("  strlen word: %li\n", strlen(word));
+        printMatrix(returnMatrix, arr);
+    }
     if (currentLetterIndex >= strlen(word)) {
         if (wordFound == 0) {
             printf("WORD FOUND!\n");
-            printMatrix(returnMatrix);
+            printMatrix(returnMatrix, arr);
         }
         else {
             printf("WORD FOUND (via another path trace):\n");
-            printMatrix(returnMatrix);
+            printMatrix(returnMatrix, arr);
         }
         wordFound = 1;
         return 1;
     } else {
+        int found = 0;
         if ((pivot.x - 1 >= 0) && (pivot.y + 1 < bSize) && getLetter(word, currentLetterIndex) == getIndex(arr, pivot.x - 1, pivot.y + 1)) { // top left
+            found = 1;
             struct coordinate newPivot = pivot;
             newPivot.x = pivot.x - 1;
             newPivot.y = pivot.y + 1;
@@ -171,6 +177,7 @@ int findAdjacentWord(char** arr, char* word, int currentLetterIndex, struct coor
             free(newRetrurnMatrix);
         }
         if ((pivot.x - 1 >= 0) && getLetter(word, currentLetterIndex) == getIndex(arr, pivot.x - 1, pivot.y)) { // left
+            found = 1;
             struct coordinate newPivot = pivot;
             newPivot.x = pivot.x - 1;
             int **newRetrurnMatrix;
@@ -180,6 +187,7 @@ int findAdjacentWord(char** arr, char* word, int currentLetterIndex, struct coor
             free(newRetrurnMatrix);
         }
         if ((pivot.x - 1 >= 0) && (pivot.y - 1 >= 0) && getLetter(word, currentLetterIndex) == getIndex(arr, pivot.x - 1, pivot.y - 1)) { // bottom left
+            found = 1;
             struct coordinate newPivot = pivot;
             newPivot.x = pivot.x - 1;
             newPivot.y = pivot.y - 1;
@@ -190,6 +198,7 @@ int findAdjacentWord(char** arr, char* word, int currentLetterIndex, struct coor
             free(newRetrurnMatrix);
         }
         if ((pivot.y - 1 >= 0) && getLetter(word, currentLetterIndex) == getIndex(arr, pivot.x, pivot.y - 1)) { // bottom
+            found = 1;
             struct coordinate newPivot = pivot;
             newPivot.y = pivot.y - 1;
             int **newRetrurnMatrix;
@@ -199,6 +208,7 @@ int findAdjacentWord(char** arr, char* word, int currentLetterIndex, struct coor
             free(newRetrurnMatrix);
         }
         if ((pivot.x + 1 < bSize) && (pivot.y - 1 >= 0) && getLetter(word, currentLetterIndex) == getIndex(arr, pivot.x + 1, pivot.y - 1)) { // bottom right
+            found = 1;
             struct coordinate newPivot = pivot;
             newPivot.x = pivot.x + 1;
             newPivot.y = pivot.y - 1;
@@ -209,6 +219,7 @@ int findAdjacentWord(char** arr, char* word, int currentLetterIndex, struct coor
             free(newRetrurnMatrix);
         }
         if ((pivot.x + 1 < bSize) && getLetter(word, currentLetterIndex) == getIndex(arr, pivot.x + 1, pivot.y)) { // right
+            found = 1;
             struct coordinate newPivot = pivot;
             newPivot.x = pivot.x + 1;
             int **newRetrurnMatrix;
@@ -218,6 +229,7 @@ int findAdjacentWord(char** arr, char* word, int currentLetterIndex, struct coor
             free(newRetrurnMatrix);
         }
         if ((pivot.x + 1 < bSize) && (pivot.y + 1 < bSize) && getLetter(word, currentLetterIndex) == getIndex(arr, pivot.x + 1, pivot.y + 1)) { // top right
+            found = 1;
             struct coordinate newPivot = pivot;
             newPivot.x = pivot.x + 1;
             newPivot.y = pivot.y + 1;
@@ -228,6 +240,7 @@ int findAdjacentWord(char** arr, char* word, int currentLetterIndex, struct coor
             free(newRetrurnMatrix);
         }
         if ((pivot.y + 1 < bSize) && getLetter(word, currentLetterIndex) == getIndex(arr, pivot.x, pivot.y + 1)) { // top
+            found = 1;
             struct coordinate newPivot = pivot;
             newPivot.y = pivot.y + 1;
             int **newRetrurnMatrix;
@@ -235,6 +248,11 @@ int findAdjacentWord(char** arr, char* word, int currentLetterIndex, struct coor
             (*(*(newRetrurnMatrix + newPivot.y) + newPivot.x) == 0) ? (*(*(newRetrurnMatrix + newPivot.y) + newPivot.x) = currentLetterIndex + 1) : (*(*(newRetrurnMatrix + newPivot.y) + newPivot.x) = appendInts(currentLetterIndex + 1, *(*(newRetrurnMatrix + newPivot.y) + newPivot.x)));
             findAdjacentWord(arr, word, currentLetterIndex + 1, newPivot, &newRetrurnMatrix);
             free(newRetrurnMatrix);
+        }
+
+        if (!found) {
+            wordFound = 0;
+            return 0;
         }
     }
 }
@@ -270,8 +288,8 @@ void searchPuzzle(char** arr, char* word) {
 		printf("\n");
         
 	}
-    free(returnMatrix);
-    if (wordFoundBool) {
+    //free(returnMatrix);  //redundant?
+    if (wordFound || wordFoundBool) {
         //printMatrix(returnMatrix);
     } else {
         printf("Word not found!\n");
