@@ -10,7 +10,9 @@ int** matMult(int **a, int **b, int size) {
 		int* temp = (int*) malloc (size * sizeof(int));
 		*(matC+i) = temp;
 		for (int j=0;j<size;j++) {
-			*( *(matC + i) + j) = *( *(a + i) + j) * *( *(b + i) + j);
+			for (int k=0;k<size;k++) { //i and j is a constant in this for loop. we only want to go from increment k and replace the j index with k for the first matrix, and replace the i index with k for the second matrix. otherwise we would be going horizontally and we would be starting at the i or j index which isn't zero.
+				*( *(matC + i) + j) += *( *(a + i) + k)   *   *( *(b + k) + j);
+			}
 		}
 	}
 	return matC;
@@ -30,7 +32,7 @@ void printArray(int ** array, int size) {
 }
 
 int main() {
-	int n = 5;
+	int n = 3;
 	int **matA, **matB, **matC;
 	// (1) Define 2 (n x n) arrays (matrices). 
 	matA = (int**)malloc(n * sizeof(int*));
@@ -59,10 +61,12 @@ int main() {
 
 	for (int i=0;i<n;i++) {
 		for (int j=0;j<n;j++) {
-			if (i==j) {
-				*( *(matA + i) + j) = i+1;
-				*( *(matB + i) + j) = i+1;
-			}
+			*( *(matA + i) + j) = i+1;
+			*( *(matB + i) + j) = i+1;
+			//if (i==j) {
+			//	*( *(matA + i) + j) = i+1;
+			//	*( *(matB + i) + j) = i+1;
+			//}
 		}
 	}
 	// (3) Call printArray to print out the 2 arrays here.

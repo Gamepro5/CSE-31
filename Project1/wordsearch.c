@@ -9,7 +9,7 @@ void printPuzzle(char** arr);
 void searchPuzzle(char** arr, char* word);
 int bSize;
 int wordFound = 0;
-int showDebugInfo = 0; //toggle to and from 1 or 0 and recompile to print more info when running. It will print the puzzle each recursive step and some more info about the step. Had to use only print debugging because gdb doesn't work on my machine.
+int showDebugInfo = 1; //toggle to and from 1 or 0 and recompile to print more info when running. It will print the puzzle each recursive step and some more info about the step. Had to use only print debugging because gdb doesn't work on my machine.
 
 // Main function, DO NOT MODIFY 	
 int main(int argc, char **argv) {
