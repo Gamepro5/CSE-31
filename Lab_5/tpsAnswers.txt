@@ -1,0 +1,22 @@
+Part 1:
+
+1.) MARS stands for MIPS Assembler and Runtime Simulator
+5.) a.) file -> open -> click on the .asm file.
+    b.) run -> assemble
+    c.) run -> go
+    d.) no, that's like asking if you can run uncompiled c code.
+    e.) run -> step
+    f.) run -> reset ; then run -> go
+
+Part 2:
+
+1.) .data defines the program data (static data segment).
+    .word declares a word (4 bytes) in the static data segment that contains the value 10 and labels this memory adress as 'num' so you can refer to it later.
+    .text defines the program instructions (text segment).
+2.) 
+3.) 
+4.) first assemble it, then click on run->toggle breakpoints. you can then use the checkboxes to choose breakpoints.
+5.) by clicking go again
+6.) look on the table on the right.
+7.) 
+8.) 
