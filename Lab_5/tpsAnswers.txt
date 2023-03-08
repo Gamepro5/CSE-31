@@ -13,10 +13,10 @@ Part 2:
 1.) .data defines the program data (static data segment).
     .word declares a word (4 bytes) in the static data segment that contains the value 10 and labels this memory adress as 'num' so you can refer to it later.
     .text defines the program instructions (text segment).
-2.) 
-3.) 
+2.) Defines the start of the fib subprocess. the first step is a branch on equal, which will call the subprocess "finish" when the item stored in $t3 is the same as $t4.
+3.) Restarts the fib algorythm (recursion). The values in the storage don't change.
 4.) first assemble it, then click on run->toggle breakpoints. you can then use the checkboxes to choose breakpoints.
 5.) by clicking go again
 6.) look on the table on the right.
-7.) 
-8.) 
+7.) n is defined above as 13. It's a "variable" of sorts for convenience when writing the code. It already is 13, so the fib of 13 is 233.
+8.) it's a thing specific to MARS that lets you print things to the console and take inputs. li $v0 tells syscall that it is to return an integer.
