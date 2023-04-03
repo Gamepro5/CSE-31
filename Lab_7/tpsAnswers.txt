@@ -1,0 +1,6 @@
+PART 1:
+
+1.) Procedures don't return a value, they do something. Functions do return a value. Methods are either a procedure or function from a class.
+2.) n/a
+3.) ok
+4.)

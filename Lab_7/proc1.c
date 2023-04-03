@@ -1,13 +1,7 @@
 #include<stdio.h>
 
-int sub(int a) {
-    int b = 2;
-    return a - b;
-}
-
-int sum(int n) {
-    int m = 15;
-    return n + sub(m + n);
+int sum(int a0, int a1) {
+    return a0 + a1;
 }
 
 int main() {
@@ -15,8 +9,8 @@ int main() {
     int n = 5;
     
 
-    y = y + x + sum(x);
+   int v0 = sum(m, n);
 
-    printf("%d\n", y);
+    printf("%d\n", v0);
     return 0;
 }
