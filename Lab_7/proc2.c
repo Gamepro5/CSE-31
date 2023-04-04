@@ -14,7 +14,6 @@ int main() {
     int x = 5, y = 10;
 
     y = y + x + sum(x);
-
     printf("%d\n", y);
     return 0;
 }

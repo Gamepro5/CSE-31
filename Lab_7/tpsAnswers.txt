@@ -3,4 +3,21 @@ PART 1:
 1.) Procedures don't return a value, they do something. Functions do return a value. Methods are either a procedure or function from a class.
 2.) n/a
 3.) ok
-4.)
+4.) J SUM jumps to the isntruction on line 20. After it is done, it jumps back to $ra which was set before calling the sum, and so it goes back to line 13.
+5.) No, you need jr because j doesn't expect a register as it's input.
+6.) line 11. No, it doesn't make sense for it to be zero. It should be 13. (or current line + 2).
+7.)yeah there's an error.
+8.) The value is 4194344.
+9.) Yes, it's correct. it didn't change. I think that's a coincidence though.
+10.) 15.
+11.) jal.
+12.) jal SUM
+
+PART 2:
+
+1.) 38. 10+5+(5+((15+5)-2)). I was right.
+2.) It does the same thing.
+3.) because $ra is set by jal to the correct adress after the jump in main. Calling jal again in SUM, though, overrides $ra and so now the original location in main is lost. This can be solved by storing it in a temp value.
+4.) You can solve this by storing it in the $sp (stack pointer).
+5.) x will be changed to m. a function should not be able to change variables outside its scope like that.
+6.) 
