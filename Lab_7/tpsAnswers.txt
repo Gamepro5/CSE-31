@@ -20,4 +20,4 @@ PART 2:
 3.) because $ra is set by jal to the correct adress after the jump in main. Calling jal again in SUM, though, overrides $ra and so now the original location in main is lost. This can be solved by storing it in a temp value.
 4.) You can solve this by storing it in the $sp (stack pointer).
 5.) x will be changed to m. a function should not be able to change variables outside its scope like that.
-6.) 
+6.) okay.
