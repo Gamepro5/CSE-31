@@ -1,0 +1,101 @@
+NOTE: An number of assignments of 1 doesn't work, but the crash happens in the main loop_in part. I'm not allowed to touch that, so it's not my fault.
+
+The following tests have been verified by manually doing it in desmos (a calculator). They are correct, and my program returns these correctly.
+
+Test 1:
+
+	Enter the number of assignments (between 1 and 25): 25
+	Enter score: 2
+	Enter score: 9
+	Enter score: 34
+	Enter score: 89
+	Enter score: -4
+	Enter score: 21
+	Enter score: -499
+	Enter score: 299
+	Enter score: 112
+	Enter score: 4
+	Enter score: 9
+	Enter score: 4
+	Enter score: 8
+	Enter score: 15
+	Enter score: 22
+	Enter score: 19
+	Enter score: 8
+	Enter score: 28
+	Enter score: 49
+	Enter score: 87
+	Enter score: -3
+	Enter score: 0
+	Enter score: 21
+	Enter score: 94
+	Enter score: 32
+	Original scores: 2 9 34 89 -4 21 -499 299 112 4 9 4 8 15 22 19 8 28 49 87 -3 0 21 94 32 
+	Sorted scores (in descending order): 299 112 94 89 87 49 34 32 28 22 21 21 19 15 9 9 8 8 4 4 2 0 -3 -4 -499 
+	Enter the number of (lowest) scores to drop: 3
+	Average (rounded down) with dropped scores removed: 43
+
+Test 2:
+
+	Enter the number of assignments (between 1 and 25): 5
+	Enter score: -5
+	Enter score: -100
+	Enter score: 43
+	Enter score: 2
+	Enter score: 90
+	Original scores: -5 -100 43 2 90 
+	Sorted scores (in descending order): 90 43 2 -5 -100 
+	Enter the number of (lowest) scores to drop: 0
+	Average (rounded down) with dropped scores removed: 6
+
+Test 3:
+
+	Enter the number of assignments (between 1 and 25): 2
+	Enter score: 1
+	Enter score: 3
+	Original scores: 1 3 
+	Sorted scores (in descending order): 3 1 
+	Enter the number of (lowest) scores to drop: 1
+	Average (rounded down) with dropped scores removed: 3
+
+Test 4:
+
+	Enter the number of assignments (between 1 and 25): 5
+	Enter score: 0
+	Enter score: 0
+	Enter score: 0
+	Enter score: 0
+	Enter score: 0
+	Original scores: 0 0 0 0 0 
+	Sorted scores (in descending order): 0 0 0 0 0 
+	Enter the number of (lowest) scores to drop: 3
+	Average (rounded down) with dropped scores removed: 0
+
+Test 5:
+
+	Enter score: 9
+	Enter score: 2
+	Enter score: 3
+	Enter score: 3
+	Enter score: 3
+	Enter score: 4
+	Enter score: -100
+	Enter score: -599
+	Enter score: 15
+	Original scores: 9 2 3 3 3 4 -100 -599 15 
+	Sorted scores (in descending order): 15 9 4 3 3 3 2 -100 -599 
+	Enter the number of (lowest) scores to drop: 0
+	Average (rounded down) with dropped scores removed: -73
+	
+Test 6:
+
+	Enter the number of assignments (between 1 and 25): 5
+	Enter score: 5
+	Enter score: 4
+	Enter score: 3
+	Enter score: 2
+	Enter score: 1
+	Original scores: 5 4 3 2 1 
+	Sorted scores (in descending order): 5 4 3 2 1 
+	Enter the number of (lowest) scores to drop: 4
+	Average (rounded down) with dropped scores removed: 5

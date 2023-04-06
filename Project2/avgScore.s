@@ -77,6 +77,10 @@ loop_in:
 	move $t0, $v0 #puts the output of calcsum into $t0, so we can print it.
 	div $t0, $t0, $a1  # $t0 = $t0 / (drop2)
 	
+	li $v0, 4 
+	la $a0, str5 
+	syscall 
+	
 	li  $v0, 1
     	add $a0, $t0, $zero # print $t0
     	syscall
@@ -205,7 +209,7 @@ selSort: # $a0 is length
 calcSum: # $a0 is the array, and $a1 is the length of the array.
 	# Your implementation of calcSum here
 	move $t5, $a1 # don't want to change $a1 cause $a1 is numScores - drop, and we need that after the recursion is done in main.
-	
+	addi $v0, $zero, 0
 calcSumRecursive:
 	ble $t5, $zero, calcsumconditional
 	addi $t5, $t5, -1
