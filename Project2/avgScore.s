@@ -9,6 +9,8 @@ str2: .asciiz "Original scores: "
 str3: .asciiz "Sorted scores (in descending order): "
 str4: .asciiz "Enter the number of (lowest) scores to drop: "
 str5: .asciiz "Average (rounded down) with dropped scores removed: "
+space: .asciiz " "
+newline: .asciiz "\n"
 
 
 .text 
@@ -37,8 +39,8 @@ loop_in:
 	li $v0, 4 
 	la $a0, str1 
 	syscall 
-	sll $t1, $t0, 2
-	add $t1, $t1, $s1
+	sll $t1, $t0, 2 # sets $t1 to our current iteration of the for loop ($t0) with a bit shift of 2. so if $t0 is 1 $t1 is 4, if $t0 is 2 $t1 is 8, etc.
+	add $t1, $t1, $s1 #adds that offset to $s1, which is the adress of the start of the array. $t1 is now the adress of the $t0 th element in the array.
 	li $v0, 5	# Read elements from user
 	syscall
 	sw $v0, 0($t1)
@@ -88,8 +90,30 @@ loop_in:
 # It prints all the elements in one line with a newline at the end.
 printArray:
 	# Your implementation of printList here	
-	
+	move $t3, $a0 # cause a0 will get changed for syscall.
+	addi $t0, $zero, 0
+forcond1:	blt $t0, $a1, for1 # for loop base case. if it isn't met, it will end and proceed below.
+	li $v0, 4 
+	la $a0, newline 
+	syscall
 	jr $ra
+for1:	
+	move $t5, $a0 # we will change a0 for printing, so put the array's pointer into $t5.
+	
+	sll $t6, $t0, 2 
+	add $t6, $t6, $t5 # $t6 is the adress of the $t0 th element in the array $t5
+	lw $t1, 0($t6)
+	
+	li  $v0, 1
+    	add $a0, $t1, $zero
+    	syscall
+    	
+    	li $v0, 4 
+	la $a0, space 
+	syscall
+	
+	addi $t0, $t0, 1  # i++
+	j forcond1
 	
 	
 # selSort takes in the number of scores as argument. 
@@ -106,14 +130,10 @@ selSort:
 calcSum: # $a0 is the array, and $a1 is the length of the array.
 	# Your implementation of calcSum here
 	bgt $a1, $zero, calcsumconditional
-	
-	
 	addi $a1, $a1, -1
-	
-	
-	
+	jal calcSum
+	add $v0, $v0, $a1
 	jr $ra
 calcsumconditional:
 	addi $ra, $zero, 0 #return 0
 	jr $ra
-	
