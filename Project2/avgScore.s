@@ -68,15 +68,17 @@ loop_in:
 	li $v0, 5	# Read the number of (lowest) scores to drop
 	syscall
 	move $a1, $v0     #a1 = drop
-	sub $a1, $s0, $a1	# drop = numScores - drop
-	
+	sub $a1, $s0, $a1	# drop2 = numScores - drop
+
 	move $a0, $s2     # calcsum(sorted, drop)
 	jal calcSum	# Call calcSum to RECURSIVELY compute the sum of scores that are not dropped
 	
 	# Your code here to compute average and print it
 	move $t0, $v0 #puts the output of calcsum into $t0, so we can print it.
+	div $t0, $t0, $a1  # $t0 = $t0 / (drop2)
+	
 	li  $v0, 1
-    	add $a0, $t0, $zero
+    	add $a0, $t0, $zero # print $t0
     	syscall
 	
 	
@@ -98,14 +100,13 @@ forcond1:	blt $t0, $a1, for1 # for loop base case. if it isn't met, it will end 
 	syscall
 	jr $ra
 for1:	
-	move $t5, $a0 # we will change a0 for printing, so put the array's pointer into $t5.
 	
 	sll $t6, $t0, 2 
-	add $t6, $t6, $t5 # $t6 is the adress of the $t0 th element in the array $t5
-	lw $t1, 0($t6)
+	add $t6, $t6, $t3 # $t6 is the adress of the $t0 th element in the array $t3
+	lw $t1, 0($t6) #put set $t1 to whatever $t3[$t0] is.
 	
 	li  $v0, 1
-    	add $a0, $t1, $zero
+    	add $a0, $t1, $zero   # print $t1
     	syscall
     	
     	li $v0, 4 
@@ -118,8 +119,82 @@ for1:
 	
 # selSort takes in the number of scores as argument. 
 # It performs SELECTION sort in descending order and populates the sorted array
-selSort:
+selSort: # $a0 is length
 	# Your implementation of selSort here
+	
+# SETS SORTED ARRAY TO ORIGINAL ARRAY.
+	addi $t0, $zero, 0 # $t0 = 0
+	selSortLoop1:
+	
+	sll $t6, $t0, 2 
+	add $t6, $t6, $s1
+	lw $t1, 0($t6) # set $t1 to whatever $s1[$t0] is.
+	
+	sll $t6, $t0, 2 
+	add $t6, $t6, $s2
+	sw $t1, 0($t6) # set $s1[$t0] to whatever $t1 is.
+	
+	addi $t0, $t0, 1 # i++
+	
+	bne $t0, $a0, selSortLoop1
+	
+	
+# nested for loop.
+	
+	addi $t0, $zero, 0 # $t0 = i = 0 
+	addi $t7, $a0, -1 #  stores (length-1) into $t7.
+	selSortLoop2:
+	
+	move $t6, $t0 # $t6 = maxIndex
+		addi $t1, $zero, 0 # $t1 = j = 0 
+		add $t1, $t0, 1 # $t1 = j = (i+1)
+		selSortLoop3:
+	
+		sll $t5, $t1, 2 
+		add $t5, $t5, $s2
+		lw $t3, 0($t5) # set $t3 to whatever $s2[$t1] is.
+		
+		sll $t5, $t6, 2 
+		add $t5, $t5, $s2
+		lw $t4, 0($t5) # set $t4 to whatever $s2[$t6] is.
+		
+		ble $t3, $t4, continue # if NOT sorted(j) > sorted(maxIndex)
+		move $t6, $t1 # maxIndex = j
+		
+		continue:
+	
+	
+		addi $t1, $t1, 1 # j++
+	
+		bne $t1, $a0, selSortLoop3
+	
+	
+	sll $t5, $t6, 2 
+	add $t5, $t5, $s2
+	lw $t3, 0($t5) # temp = sorted[maxIndex] where temp = $t3
+	
+	sll $t5, $t0, 2 
+	add $t5, $t5, $s2
+	lw $t4, 0($t5) # $t4 = sorted[i]
+	
+	sll $t5, $t6, 2 
+	add $t5, $t5, $s2
+	sw $t4, 0($t5) # sorted[maxIndex] = temp2
+	
+	sll $t5, $t0, 2 
+	add $t5, $t5, $s2
+	sw $t3, 0($t5) # sorted[i] = temp
+	
+	
+	addi $t0, $t0, 1 # i++
+	
+	bne $t0, $t7, selSortLoop2
+	
+	
+	
+	
+	
+	
 	
 	jr $ra
 	
@@ -129,11 +204,18 @@ selSort:
 # Note: you MUST NOT use iterative approach in this function.
 calcSum: # $a0 is the array, and $a1 is the length of the array.
 	# Your implementation of calcSum here
-	bgt $a1, $zero, calcsumconditional
-	addi $a1, $a1, -1
-	jal calcSum
-	add $v0, $v0, $a1
-	jr $ra
+	move $t5, $a1 # don't want to change $a1 cause $a1 is numScores - drop, and we need that after the recursion is done in main.
+	
+calcSumRecursive:
+	ble $t5, $zero, calcsumconditional
+	addi $t5, $t5, -1
+	
+	sll $t6, $t5, 2 
+	add $t6, $t6, $s2
+	lw $t7, 0($t6)
+	
+	add $v0, $v0, $t7
+	j calcSumRecursive
 calcsumconditional:
-	addi $ra, $zero, 0 #return 0
+	#addi $v0, $zero, 0 #return 0
 	jr $ra
