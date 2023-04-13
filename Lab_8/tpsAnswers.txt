@@ -1,0 +1,15 @@
+TPS 1:
+
+5.) Yes. You do, otherwise it will just be overritten to n.
+
+TPS 2:
+
+1.) I think that it will print 1,3,3,1,3,3,1,3,1,3,3,1,3. total 29. I was correct but i forgot about the sum part.
+2.) It does nothing right now.
+3.) 
+4.) $a0 is the convention for arguments of a function.
+5.) Move the print value into a temp register. $t6 or something.
+6.) Room for 3 integers is reserved. I know that $ra, $a0, and $v0 need to be stored.
+10.) Because we may need to use the $a0 given to us by main after calling these functions.The state of the parent call of recursion must be kept.
+12.) The next recursion call with be m-3 instead of m-1 because we already decreased it by m-2. We also need to push the ouput of the first recursion call to the stack so we can use it after to sum both up.
+15.) $ra.
