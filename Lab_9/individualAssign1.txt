@@ -1,0 +1,108 @@
+Line 7: addi $s0, $zero, -15    0x2010fff1
+
+    Step 1: Convert "addi $s0, $zero, -15" to machine code:
+
+        addi is protocol I.
+
+        rt is $s0, rs is $zero, and immediate is -15.
+
+        $s0 is 10000, $zero is 00000, and -15 is 1111111111110001. operation of addi is 001000
+
+        combine them into a machine code: 001000 00000 10000 1111111111110001
+
+    Step 2: Convert "001000 00000 10000 1111111111110001" to MIPS:
+
+        observe opcode is 001000. that isn't zero, so it can't be the r protocol. looking at the refrence sheet, we see that this is addi.
+
+        first argument slot for the i protocol is rs. the next 5 bits are 00000, that means rs is adress $zero.
+
+        second argument slot for the i protocol is rt. the next 5 bits are 10000. that is 16 in decimal. 16 is adress $s0
+
+        third argument for i protocol is an immediate. the remaining bits will evaluate to an integer. 1111111111110001 is -15.
+
+        the syntax for addi is "addi rt, rs, immediate"
+
+        put all this infomration in order and you get: "addi $s0, $zero, -15"
+
+
+
+Line 14: slt $t0, $s0, $s1    0x0211402a
+
+    Step 1: Convert "slt $t0, $s0, $s1" to machine code:
+
+        slt is protocol R.
+
+        rt is $s1, rs is $s0, rd is $t0, and shamt is nothing so it's just zero.
+
+        $s1 is 10001, $s0 is 10000, $t0 is 01000, and shamt is not used so it's just 00000. Since this is the r protocol, the first 6 bits are 0, and the last 6 bits are what r protocol function we are using. slt is 101010.
+
+        combine them into a machine code: 000000 10000 10001 01000 00000 101010
+
+    Step 2: Convert "000000 10000 10001 01000 00000 101010" to MIPS:
+
+        observe opcode is 000000. that is zero, so it's the r protocol. looking at the refrence sheet, we see that the last 6 bits that define funct is slt.
+
+        first argument slot for the i protocol is rs. the next 5 bits are 10000, that is 16 in decimal. 16 is adress $s0
+
+        second argument slot for the i protocol is rt. the next 5 bits are 10001. that is 17 in decimal. 17 is adress $s1
+
+        third argument for i protocol is an rd. the next 5 bits are 01000. that is 8 in decimal. 8 is the adress $t0
+
+        the next 3 bits aren't used for the slt function. ignore them.
+
+        the syntax for slt is "slt rd, rs, rt"
+
+        put all this infomration in order and you get: "slt $t0, $s0, $s1"
+
+
+
+Line 17: beq $t0, $zero, LEEQ    beq $8, $0, 6   0x11000006
+
+    Step 1: Convert "beq $t0, $zero, LEEQ" to machine code:
+
+        beq is protocol I.
+
+        rt is $zero, rs is $t0, and immediate is 6 because LEEQ evaluates to +6 lines under this beq call.
+
+        $zero is 00000, $t0 is 01000, and +6 is 0000000000000110. operation of beq is 000100
+
+        combine them into a machine code: 000100 01000 00000 0000000000000110
+
+    Step 2: Convert "000100 01000 00000 0000000000000110" to MIPS:
+
+        observe opcode is 000100. that isn't zero, so it can't be the r protocol. looking at the refrence sheet, we see that this is beq.
+
+        first argument slot for the i protocol is rs. the next 5 bits are 01000, that is 8 in decimal, so rs is address $t0
+
+        second argument slot for the i protocol is rt. the next 5 bits are 00000. that is zero in decimal, so rt is address $zero.
+
+        third argument for i protocol is an immediate. the remaining bits will evaluate to an integer. 0000000000000110 is +6.
+
+        the syntax for beq is "beq rt, rs, offset"
+
+        put all this infomration in order and you get: "beq $t0, $zero, 6"
+
+
+Line 20: j GRT   0x08100007
+
+    Step 1: convert "j GRT" to machine code
+
+        j is the J protocol.
+
+        the first 6 bits is the j function 000010
+
+        the next 26 bits represent a compressed version of the adress.
+
+        the adress of GRT in binary is 00000000010000000000000000011000 remove the first 4 and last 2 bits to get 00000100000000000000000110. add 1 to get the simplified address.
+
+        combine the steps to get "000010 00000100000000000000000111"
+
+    Step 2: convert "000010 00000100000000000000000111" to MIPS
+
+        observe opcode is 000010. this isn't zero so it can't be the r format. the refrence sheet says 000010 is the jump operation.
+
+        the first argument the j protocol is the opcode, which is the j operation.
+
+        the next argument is the jump address, so the next 26 bits are the address. in hex, that is 0x100007
+
+        put all this information together and you get "j 0x100007"

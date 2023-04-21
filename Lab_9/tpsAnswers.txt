@@ -1,0 +1,31 @@
+PART 1:
+
+4.) 32 bits.
+5.) R, I, and J.
+    addi (I protocol) 001000 00000 10000 0000000000011001 (adds 25 to whatever is in $0 and puts it in $16.)
+    j (J protocol) 000010 00000100000000000000010001 (the first 6 bits are the jump operation protocol and the other bits are the address.)
+    addu (R protocol) 001001 00000 00010 00000 00000 000100
+6.)
+    a.) it's the addi operation.
+    b.) it's 8 in hex. rs is $zero, rt is 16 or 10 in hex, and the immediate is 25 or 19 in hex
+    c.) 001000 00000 10000 0000000000011001 or 0x20100019
+
+7.)
+    a.) 000000 00010 00000 00000 00000 010000
+    b.) this is an r protocol type as the first 6 bits are 0. it contains opcode, rs, rt, rd, shamt, and funct.
+    c.) opcode=000000 rs=00010 rt=00000 rd=00000 shamt=00000 funct=010000
+    d.) mfhi where rd is $zero.
+    e.) mfhi $zero
+8.) bne $8, $0, 1
+    a.) uses I protocol.
+    b.) rs=8 and rt=0, immediate is 1.
+    c.) the address in hex is 0x24020004, and the name is LESS
+    d.) No, you put 0x00000001 because the LESS flag is an offset of +1 away from this BNE statement.
+    e.) you look at the last 16 bits of the instruction. 0000000000000001
+    f.) 000101 01000 00000 0000000000000001 and 0x15000001. Yes they match.
+9.)
+    a.) this is the J protocol. it first 6 bits represents the jump function, and the rest represents the target adress.
+    b.) 0x00000002
+    c.) GREQ at adress 0x24020004
+    d.) you turn the 32 bit target adress into a 26 bit simplified adress by removing the first 4 bits and the last 2 bits. that way it can fit. 00000100000000000000000001
+    e.) 00001000000100000000000000000001 0x08100001
