@@ -1,0 +1,8 @@
+Part 1:
+
+1.) Cache is a small amount of memory in the CPU so data currently being operated on doesn't need to move all the way to the ram.
+4.) 2^4 so it's 4 bytes. You find the power of 2 you need to get to get to the size of your block. 2^4=16. Not it is not practical to have a block size of 1.
+5.) 6 because 2^6 = 64 blocks.
+6.) yeah you multiply the blocks number by the block size to get the total bytes available.
+7.)
+8.)
