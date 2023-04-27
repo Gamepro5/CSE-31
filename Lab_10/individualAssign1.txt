@@ -1,0 +1,9 @@
+1.) I have 3 levels of cache, techincally I have 4 because the first two count as L1 Data and L1 Instruction.
+2.) 
+	L1 Data: 8*32 killobytes (8 way)
+	L1 Instruction: 8*32 killobytes (8 way)
+	Level 2: 8*512 killobytes (8 way)
+	Level 3: 2*16  megabytes (16 way)
+3.) CPU-Z doesn't have any entries for block size or line size. I have an AMD Ryzen 7 3700X.
+4.) It doesn't say...
+5.) Not enough information because CPU-Z literally only have 4 entries in the cache section and those were the ones listed in question 2.

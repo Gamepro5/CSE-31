@@ -4,5 +4,11 @@ Part 1:
 4.) 2^4 so it's 4 bytes. You find the power of 2 you need to get to get to the size of your block. 2^4=16. Not it is not practical to have a block size of 1.
 5.) 6 because 2^6 = 64 blocks.
 6.) yeah you multiply the blocks number by the block size to get the total bytes available.
-7.)
-8.)
+7.) The remaining bits are used for the tag which is basically the bucket id inside the bucket id defined by the index.
+8.) 3 offset bits, 16 blocks in the cache, 4 index bits, and 13 tag bits. 1 tag bit.
+
+Part 2:
+
+1.) If two or more blocks are used in alternation, they will constantly be flaged as invalid and need to be re-aquired, so it kind of defeats the purpose of having cache in the first place.
+2.) 2 because 4 needs at most 2 bits to represent the number. You would have 0, 1, 2, and 3 as buckets. (4 way associative cache)
+3.) 3 offset bits, 16 blocks in cache, 2 sets in the cache, 1 index bit, 4 tag bits.
